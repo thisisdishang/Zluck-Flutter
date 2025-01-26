@@ -1,0 +1,5 @@
+package `in`.zluck.zluckflutter
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
