@@ -501,7 +501,7 @@ class _MultiStepFormState extends State<MultiStepForm> {
     if (_currentPage < 2) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
+        curve: Curves.slowMiddle,
       );
     }
   }
@@ -511,7 +511,7 @@ class _MultiStepFormState extends State<MultiStepForm> {
     if (_currentPage > 0) {
       _pageController.previousPage(
         duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInExpo,
+        curve: Curves.slowMiddle,
       );
     }
   }
@@ -546,6 +546,7 @@ class _MultiStepFormState extends State<MultiStepForm> {
           // PageView for multi-step form
           Expanded(
             child: PageView(
+              scrollDirection: Axis.vertical,
               controller: _pageController,
               onPageChanged: (index) {
                 setState(() {
@@ -872,8 +873,8 @@ class _AuthScreenState extends State<AuthScreen> {
       body: Center(
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          switchInCurve: Curves.easeInOut,
-          switchOutCurve: Curves.easeInOut,
+          switchInCurve: Curves.easeInCubic,
+          switchOutCurve: Curves.easeOutCubic,
           child: _isSignIn
               ? SignInForm(
                   key: const ValueKey('SignInForm'),
@@ -930,6 +931,15 @@ class SignInForm extends StatelessWidget {
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              side: BorderSide(
+                color: Colors.grey,
+                width: 1.0,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7),
+              ),
+            ),
             child: const Text('Sign In'),
           ),
           TextButton(
@@ -988,6 +998,15 @@ class SignUpForm extends StatelessWidget {
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              side: BorderSide(
+                color: Colors.grey,
+                width: 1.0,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7),
+              ),
+            ),
             child: const Text('Sign Up'),
           ),
           TextButton(
